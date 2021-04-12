@@ -23,12 +23,20 @@ public class KnockBack : MonoBehaviour
                 Vector2 difference = hit.transform.position - transform.position;
                 difference = difference.normalized * thrust;
                 hit.AddForce(difference, ForceMode2D.Impulse);
+<<<<<<< Updated upstream
                 if (other.gameObject.CompareTag("Enemy"))
+=======
+                if (other.gameObject.CompareTag("enemy"))
+>>>>>>> Stashed changes
                 {
                     hit.GetComponent<Enemy>().currentState = EnemyState.stagger;
                     other.GetComponent<Enemy>().Knock(hit, knockTime);
                 }
+<<<<<<< Updated upstream
                 if(other.gameObject.CompareTag("Player"))
+=======
+                if (other.gameObject.CompareTag("Player"))
+>>>>>>> Stashed changes
                 {
                     hit.GetComponent<PlayerMovement>().currentState = PlayerState.stagger;
                     other.GetComponent<PlayerMovement>().Knock(knockTime);
@@ -36,4 +44,17 @@ public class KnockBack : MonoBehaviour
             }
         }
     }
+<<<<<<< Updated upstream
+=======
+
+    private IEnumerator KnockCo(Rigidbody2D enemy)
+    {
+        if (enemy != null)
+        {
+            yield return new WaitForSeconds(knockTime);
+            enemy.velocity = Vector2.zero;
+            enemy.GetComponent<Enemy>().currentState = EnemyState.idle;
+        }
+    }
+>>>>>>> Stashed changes
 }
