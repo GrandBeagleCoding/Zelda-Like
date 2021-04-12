@@ -33,14 +33,29 @@ public class Log : Enemy
         if(Vector3.Distance(target.position, transform.position)<= chaseRadius &&
             Vector3.Distance(target.position, transform.position) > attackRadius)
         {
+<<<<<<< Updated upstream
             if (currentState == EnemyState.idle || currentState == EnemyState.walk && currentState != EnemyState.stagger)
+=======
+            if (currentState == EnemyState.idle || currentState == EnemyState.walk)
+>>>>>>> Stashed changes
             {
                 Vector3 temp = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
                 myRigidbody.MovePosition(temp);
                 ChangeState(EnemyState.walk);
             }
+<<<<<<< Updated upstream
+=======
         }
 
+    }
+
+    private void ChangeState(EnemyState newState)
+    {
+        if(currentState != newState)
+        {
+            currentState = newState;
+>>>>>>> Stashed changes
+        }
     }
     private void ChangeState(EnemyState newState)
     {

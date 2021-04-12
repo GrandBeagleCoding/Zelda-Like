@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 117097119}
   m_Layer: 0
   m_Name: upHibox
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -260,9 +260,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 117097116}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 327e707e6b30e8f4f8fbf117150adf7c, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f343978023fc58468f1c87e7d4dfcad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thrust: 5
+  knockTime: 0.2
 --- !u!1 &164196603
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,7 +449,7 @@ GameObject:
   - component: {fileID: 479957494}
   m_Layer: 0
   m_Name: rightHitbox
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -509,9 +511,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 479957491}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 327e707e6b30e8f4f8fbf117150adf7c, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f343978023fc58468f1c87e7d4dfcad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thrust: 5
+  knockTime: 0.2
 --- !u!1 &499829749 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8842091419679007341, guid: ae9733021db50604b8b082b4c5788249, type: 3}
@@ -30131,20 +30135,32 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1015487977
-MonoBehaviour:
+--- !u!61 &1015487977
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1015487970}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f343978023fc58468f1c87e7d4dfcad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thrust: 5
-  knockTime: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0059161186, y: -0.15086088}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 2}
+    newSize: {x: 1, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.60953665, y: 0.9055193}
+  m_EdgeRadius: 0
 --- !u!1 &1122151488
 GameObject:
   m_ObjectHideFlags: 0
@@ -30159,6 +30175,8 @@ GameObject:
   - component: {fileID: 1122151494}
   - component: {fileID: 1122151493}
   - component: {fileID: 1122151492}
+  - component: {fileID: 1122151495}
+  - component: {fileID: 1122151496}
   m_Layer: 0
   m_Name: log
   m_TagString: enemy
@@ -30262,6 +30280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd45b5714fc4ad640bfcab83f143a977, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   health: 2
   enemyName: Lufy the Log
   baseAttack: 2
@@ -30284,7 +30303,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.012724638, y: -0.5344427}
+  m_Offset: {x: -0.003335476, y: -0.5344427}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -30295,7 +30314,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.82931566, y: 0.44757092}
+  m_Size: {x: 0.75420094, y: 0.44757092}
   m_EdgeRadius: 0
 --- !u!50 &1122151494
 Rigidbody2D:
@@ -30318,6 +30337,46 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!61 &1122151495
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1122151488}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0093894005, y: -0.098587334}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 2}
+    newSize: {x: 2, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.94840145, y: 1.3333617}
+  m_EdgeRadius: 0
+--- !u!114 &1122151496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1122151488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f343978023fc58468f1c87e7d4dfcad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thrust: 4
+  knockTime: 0.2
 --- !u!4 &1214132838 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3125528111931721753, guid: a7e86a99a1398a0448412bfc44df2f8a, type: 3}
@@ -30776,7 +30835,7 @@ GameObject:
   - component: {fileID: 1620510260}
   m_Layer: 0
   m_Name: downHitbox
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30835,9 +30894,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1620510257}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 327e707e6b30e8f4f8fbf117150adf7c, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f343978023fc58468f1c87e7d4dfcad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thrust: 5
+  knockTime: 0.2
 --- !u!4 &1765601304 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3125528111931721753, guid: a7e86a99a1398a0448412bfc44df2f8a, type: 3}
@@ -30940,7 +31001,7 @@ GameObject:
   - component: {fileID: 1875388196}
   m_Layer: 0
   m_Name: leftHitbox
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31001,9 +31062,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1875388193}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 327e707e6b30e8f4f8fbf117150adf7c, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f343978023fc58468f1c87e7d4dfcad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thrust: 5
+  knockTime: 0.2
 --- !u!1001 &1944831850
 PrefabInstance:
   m_ObjectHideFlags: 0

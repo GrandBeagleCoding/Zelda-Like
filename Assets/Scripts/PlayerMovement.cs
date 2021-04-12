@@ -10,6 +10,10 @@ public enum PlayerState
     interact,
     stagger,
     idle
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 }
 
 public class PlayerMovement : MonoBehaviour
@@ -17,7 +21,11 @@ public class PlayerMovement : MonoBehaviour
 
     public PlayerState currentState;
     public float speed;
+<<<<<<< Updated upstream
     private Rigidbody2D myRigidbody;
+=======
+    private Rigidbody2D myRigidBody;
+>>>>>>> Stashed changes
     private Vector3 change;
     private Animator animator;
 
@@ -26,7 +34,11 @@ public class PlayerMovement : MonoBehaviour
     {
         currentState = PlayerState.walk;
         animator = GetComponent<Animator>();
+<<<<<<< Updated upstream
         myRigidbody = GetComponent<Rigidbody2D>();
+=======
+        myRigidBody = GetComponent<Rigidbody2D>();
+>>>>>>> Stashed changes
         animator.SetFloat("moveX", 0);
         animator.SetFloat("moveY", -1);
     }
@@ -79,7 +91,11 @@ public class PlayerMovement : MonoBehaviour
     void MoveCharacter()
     {
         change.Normalize();
+<<<<<<< Updated upstream
         myRigidbody.MovePosition(
+=======
+        myRigidBody.MovePosition(
+>>>>>>> Stashed changes
             transform.position + change * speed * Time.deltaTime
             );
 
@@ -89,6 +105,7 @@ public class PlayerMovement : MonoBehaviour
     {
         StartCoroutine(KnockCo(knockTime));
     }
+<<<<<<< Updated upstream
     private IEnumerator KnockCo( float knockTime)
     {
         if (myRigidbody != null)
@@ -103,4 +120,17 @@ public class PlayerMovement : MonoBehaviour
     {
         return a + b;
     }
+=======
+
+    private IEnumerator KnockCo(float knockTime)
+    {
+        if (myRigidBody != null)
+        {
+            yield return new WaitForSeconds(knockTime);
+            myRigidBody.velocity = Vector2.zero;
+            currentState = PlayerState.idle;
+            myRigidBody.velocity = Vector2.zero;
+        }
+    }
+>>>>>>> Stashed changes
 }

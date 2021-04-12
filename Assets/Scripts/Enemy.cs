@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     public int baseAttack;
     public float moveSpeed;
 
+<<<<<<< Updated upstream
     public void Knock(Rigidbody2D myRigidbody, float knockTime)
     {
         StartCoroutine(KnockCo(myRigidbody, knockTime));
@@ -32,6 +33,21 @@ public class Enemy : MonoBehaviour
             myRigidbody.velocity = Vector2.zero;
             currentState = EnemyState.idle;
             myRigidbody.velocity = Vector2.zero;
+=======
+    public void Knock(Rigidbody2D myRigidBody, float knockTime)
+    {
+        StartCoroutine(KnockCo(myRigidBody, knockTime));
+    }
+
+    private IEnumerator KnockCo(Rigidbody2D myRigidBody, float knockTime)
+    {
+        if (myRigidBody != null)
+        {
+            yield return new WaitForSeconds(knockTime);
+            myRigidBody.velocity = Vector2.zero;
+            currentState = EnemyState.idle;
+            myRigidBody.velocity = Vector2.zero;
+>>>>>>> Stashed changes
         }
     }
 }
